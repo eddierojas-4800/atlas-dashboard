@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS - Master Matrix (All Collapsible)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .top-bar { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap; }
+        h1 { color: #1c1e21; margin: 0; font-size: 1.5rem; flex-grow: 1; }
+        .btn-group { display: flex; gap: 10px; }
+        .save-btn { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        .done-btn { background: #6c757d; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        
+        .section-container { width: 100%; max-width: 1100px; background: #fff; border-radius: 20px; padding: 15px 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 8px solid #ccc; }
+        .section-summary { font-weight: 800; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; font-size: 1rem; text-transform: uppercase; outline: none; }
+        .section-summary::-webkit-details-marker { display: none; }
+        .section-content { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+
+        .calendar-sec { border-top-color: #ff4444; } .calendar-sec .section-summary { color: #ff4444; }
+        .focus-sec { border-top-color: #ffd700; background: linear-gradient(135deg, #1c1e21 0%, #333 100%); } .focus-sec .section-summary { color: #ffd700; }
+        .delivery-sec { border-top-color: #007bff; } .delivery-sec .section-summary { color: #007bff; }
+        .replies-sec { border-top-color: #6200ee; } .replies-sec .section-summary { color: #6200ee; }
+        .matrix-sec { border-top-color: #1c1e21; } .matrix-sec .section-summary { color: #1c1e21; }
+        .note-sec { border-top-color: #6c757d; } .note-sec .section-summary { color: #6c757d; }
+        .client-sec { border-top-color: #17a2b8; } .client-sec .section-summary { color: #17a2b8; }
+
+        .event-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
+        .event-item { background: #fff5f5; border-left: 5px solid #ff4444; padding: 15px; border-radius: 10px; font-size: 0.9rem; }
+        .event-time { font-weight: 800; color: #1c1e21; display: block; margin-bottom: 5px; }
+        .event-title { color: #b71c1c; font-weight: 700; }
+
+        .focus-slots { display: flex; flex-direction: column; gap: 12px; }
+        .slot { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.3); min-height: 60px; color: white; }
+        .slot-number { font-size: 2rem; font-weight: 800; color: #ffd700; min-width: 40px; opacity: 0.7; }
+        .slot-list { list-style: none; padding: 0; margin: 0; flex-grow: 1; display: flex; align-items: center; }
+
+        .delivery-item { background: #f0f7ff; border-left: 5px solid #007bff; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .delivery-name { font-weight: 700; color: #0056b3; }
+        .delivery-date { font-weight: 800; color: #333; font-size: 0.85rem; background: #fff; padding: 4px 10px; border-radius: 5px; }
+
+        .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .quadrant { padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 200px; position: relative; }
+        .q1 { background-color: #ffebee; border-left: 6px solid #ef5350; }
+        .q2 { background-color: #e3f2fd; border-left: 6px solid #42a5f5; }
+        .q3 { background-color: #fffde7; border-left: 6px solid #fbc02d; }
+        .q4 { background-color: #e8f5e9; border-left: 6px solid #66bb6a; }
+        .quadrant h3 { font-size: 0.85rem; margin-top: 0; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; }
+
+        ul { list-style-type: none; padding: 0; }
+        .task-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; padding: 10px; background: rgba(255,255,255,0.85); border-radius: 10px; border: 1px solid transparent; cursor: grab; transition: 0.2s; width: 100%; box-sizing: border-box; }
+        .task-item:hover { border-color: #ccc; background: #fff; }
+        .task-item input[type="checkbox"] { width: 17px; height: 17px; cursor: pointer; margin-top: 4px; }
+        .task-item input[type="checkbox"]:checked + .task-content .task-title { text-decoration: line-through; opacity: 0.5; }
+        .task-content { flex-grow: 1; min-width: 0; }
+        .task-title { font-weight: 600; font-size: 0.9rem; color: #1c1e21; outline: none; display: block; }
+        .task-status { font-size: 0.65rem; font-weight: bold; text-transform: uppercase; color: #777; margin-top: 3px; display: block; outline: none; }
+        
+        .reply-type-selection { display: flex; flex-direction: column; gap: 2px; font-size: 0.6rem; font-weight: 800; color: #6200ee; text-transform: uppercase; min-width: 45px; }
+        .reply-type-selection label { display: flex; align-items: center; gap: 3px; cursor: pointer; }
+        .reply-type-selection input[type="radio"] { width: 11px; height: 11px; margin: 0; }
+
+        .client-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+        .add-btn { background: #1c1e21; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
+        
+        #done-history { display: none; width: 100%; max-width: 1100px; margin-top: 20px; background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-top: 8px solid #28a745; }
+        .ghost { opacity: 0.4; background: #e2eafc !important; border: 2px dashed #999; }
+        @media (max-width: 768px) { .matrix-grid, .event-list, .client-list { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>🎯 ATLAS Master Matrix</h1>
+        <div class="btn-group">
+            <button class="done-btn" onclick="toggleDone()">✅ SHOW DONE</button>
+            <button class="save-btn" onclick="triggerSync()">💾 GUARDAR (SYNC)</button>
+        </div>
+    </div>
+
+    <!-- CALENDAR -->
+    <details class="section-container calendar-sec" open>
+        <summary class="section-summary">🚩 PRÓXIMOS EVENTOS IMPORTANTES</summary>
+        <div class="section-content">
+            <div class="event-list">
+                <div class="event-item"><span class="event-time">Lunes 20 Abr - 11:00 AM</span><span class="event-title">Paola Ruiz: Agendar Reunión con Viubux</span></div>
+                <div class="event-item"><span class="event-time">Martes 21 Abr - 11:00 AM</span><span class="event-title">Reunión con Jesús Durazo</span></div>
+                <div class="event-item"><span class="event-time">Miércoles 22 Abr - 09:30 AM</span><span class="event-title">Armando Bojórquez y Servando</span></div>
+            </div>
+        </div>
+    </details>
+
+    <!-- FOCUS -->
+    <details class="section-container focus-sec" open>
+        <summary class="section-summary">🚀 FOCUS: THE NEXT 3 PRIORITIES - SUPER ENFOQUE</summary>
+        <div class="section-content">
+            <div class="focus-slots">
+                <div class="slot"><div class="slot-number">1</div><ul id="f1-list" class="slot-list"><li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">C36 música</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li></ul></div>
+                <div class="slot"><div class="slot-number">2</div><ul id="f2-list" class="slot-list"><li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">pagar facturas JARPA</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li></ul></div>
+                <div class="slot"><div class="slot-number">3</div><ul id="f3-list" class="slot-list"><li class="task-item"><div class="task-content"><span class="task-title" contenteditable="true">enviar facturas Henedy. Solo revisar con wsp. Que estén bien.</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li></ul></div>
+            </div>
+        </div>
+    </details>
+
+    <!-- DELIVERIES -->
+    <details class="section-container delivery-sec" open>
+        <summary class="section-summary">📦 PRÓXIMAS ENTREGAS</summary>
+        <div class="section-content">
+            <div class="delivery-item"><span class="delivery-name">C36</span><span class="delivery-date">Hoy (18 Abr)</span></div>
+            <div class="delivery-item"><span class="delivery-name">Arzan</span><span class="delivery-date">Lunes (20 Abr)</span></div>
+            <div class="delivery-item"><span class="delivery-name">BEP</span><span class="delivery-date">30 Abril</span></div>
+            <div class="delivery-item"><span class="delivery-name">DDA</span><span class="delivery-date">7 Mayo</span></div>
+        </div>
+    </details>
+
+    <!-- REPLIES -->
+    <details class="section-container replies-sec" open>
+        <summary class="section-summary">💬 REPLIES PENDIENTES</summary>
+        <div class="section-content">
+            <ul id="replies-list">
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_pak" value="wsp" checked> Wsp</label><label><input type="radio" name="r_pak" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Pakada (Paco)</span><span class="task-status" contenteditable="true">5BX Studios / Distribución</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_mar" value="wsp" checked> Wsp</label><label><input type="radio" name="r_mar" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Marisela Odreman</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_jul" value="wsp"> Wsp</label><label><input type="radio" name="r_jul" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Juliet</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_ber" value="wsp" checked> Wsp</label><label><input type="radio" name="r_ber" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Berenice medina</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_ric" value="wsp" checked> Wsp</label><label><input type="radio" name="r_ric" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Ricardo</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_dub" value="wsp"> Wsp</label><label><input type="radio" name="r_dub" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Dubraska de penguin</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+            </ul>
+            <button class="add-btn" onclick="addTask('replies-list')">+</button>
+        </div>
+    </details>
+
+    <!-- MATRIX -->
+    <details class="section-container matrix-sec" open>
+        <summary class="section-summary">📀 PRIORIDADES (EISENHOWER MATRIX)</summary>
+        <div class="section-content matrix-grid">
+            <div class="quadrant q1">
+                <h3>🚨 Q1: HACER AHORA <button class="add-btn" onclick="addTask('q1-list')">+</button></h3>
+                <ul id="q1-list">
+                    <li class="task-item"><input type="checkbox" checked><div class="task-content"><span class="task-title" contenteditable="true">REUNIÓN: Nacarid Portal</span><span class="task-status" contenteditable="true">HECHO ✅</span></div></li>
+                    <li class="task-item"><input type="checkbox" checked><div class="task-content"><span class="task-title" contenteditable="true">TPN: Tocar base con Eduardo</span><span class="task-status" contenteditable="true">HECHO ✅</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Casting NU</span><span class="task-status" contenteditable="true">Lunes Próximo</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Casting Red Squid</span><span class="task-status" contenteditable="true">Lunes Próximo</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Yoel Sardiñas: Cotización audiolibro</span><span class="task-status" contenteditable="true">Viernes</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Emilia Miranda: Welcome msg change</span><span class="task-status" contenteditable="true">Viernes</span></div></li>
+                </ul>
+            </div>
+            <div class="quadrant q2">
+                <h3>📅 Q2: AGENDAR <button class="add-btn" onclick="addTask('q2-list')">+</button></h3>
+                <ul id="q2-list">
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Invoice RedSquid</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">ISBN: Miguelina Guzmán (Enviar/Pago)</span><span class="task-status" contenteditable="true">ISBN</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Colgar de PublishDrive ALP</span><span class="task-status" contenteditable="true">DIST</span></div></li>
+                </ul>
+            </div>
+            <div class="quadrant q3">
+                <h3>🤝 Q3: DELEGAR <button class="add-btn" onclick="addTask('q3-list')">+</button></h3>
+                <ul id="q3-list"><li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Nacho Ruiz Hens (Follow-up)</span><span class="task-status" contenteditable="true">Pnd</span></div></li></ul>
+            </div>
+            <div class="quadrant q4">
+                <h3>🗑️ Q4: ELIMINAR <button class="add-btn" onclick="addTask('q4-list')">+</button></h3>
+                <ul id="q4-list"><li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Luis Ferrara: Audiolibro/Ebook</span><span class="task-status" contenteditable="true">Baja</span></div></li></ul>
+            </div>
+        </div>
+    </details>
+
+    <!-- NOTE DUMP -->
+    <details class="section-container note-sec" open>
+        <summary class="section-summary">📓 NOTE DUMP: LLUVIA DE IDEAS</summary>
+        <div class="section-content">
+            <ul id="note-dump-list">
+                <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">PublishDrive: 25% comm, 90d cookie, Net30</span><span class="task-status" contenteditable="true">INFO</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Viubux Connect: 90d cookie, Net30 ($500)</span><span class="task-status" contenteditable="true">INFO</span></div></li>
+            </ul>
+            <button class="add-btn" onclick="addTask('note-dump-list')">+</button>
+        </div>
+    </details>
+
+    <!-- CLIENTS -->
+    <details class="section-container client-sec" open>
+        <summary class="section-summary">👥 CLIENTES & SEGUIMIENTO ACTIVO</summary>
+        <div class="section-content">
+            <ul id="client-list" class="client-list">
+                <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Cecilia Domeyko</span><span class="task-status" contenteditable="true">KEEP AN EYE ON FOCUS</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Miguelina Guzmán</span><span class="task-status" contenteditable="true">ISBN/PAGO</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Jesús Durazo</span><span class="task-status" contenteditable="true">REUNIÓN MARTES</span></div></li>
+            </ul>
+            <button class="add-btn" onclick="addTask('client-list')">+</button>
+        </div>
+    </details>
+
+    <div id="done-history">
+        <h2>✅ Tareas Completadas</h2>
+        <ul id="done-list"></ul>
+    </div>
+
+    <script>
+        const lists = ['q1-list', 'q2-list', 'q3-list', 'q4-list', 'note-dump-list', 'f1-list', 'f2-list', 'f3-list', 'replies-list', 'client-list'];
+        lists.forEach(id => {
+            new Sortable(document.getElementById(id), { group: 'shared', animation: 150, ghostClass: 'ghost', filter: '[contenteditable="true"]', preventOnFilter: false });
+        });
+
+        function addTask(listId) {
+            const list = document.getElementById(listId);
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            if (listId === 'replies-list') {
+                const count = Math.random().toString(36).substring(7);
+                li.innerHTML = `<input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_${count}" value="wsp" checked> Wsp</label><label><input type="radio" name="r_${count}" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Nuevo reply...</span><span class="task-status" contenteditable="true">PENDIENTE</span></div>`;
+            } else {
+                li.innerHTML = `<input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Nueva entrada...</span><span class="task-status" contenteditable="true">PND</span></div>`;
+            }
+            list.appendChild(li);
+        }
+
+        function triggerSync() {
+            document.querySelector('.save-btn').innerText = "⏳ SINCRONIZANDO...";
+            setTimeout(() => { document.querySelector('.save-btn').innerText = "✅ LISTO - DI 'SYNC'"; }, 500);
+        }
+
+        function toggleDone() {
+            const history = document.getElementById('done-history');
+            const doneList = document.getElementById('done-list');
+            doneList.innerHTML = '';
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                const title = cb.closest('.task-item').querySelector('.task-title').innerText;
+                const li = document.createElement('li');
+                li.style.padding = '8px'; li.style.borderBottom = '1px solid #eee';
+                li.innerText = '✅ ' + title;
+                doneList.appendChild(li);
+            });
+            if (doneList.innerHTML === '') doneList.innerHTML = '<li>No hay tareas completadas aún.</li>';
+            history.style.display = history.style.display === 'block' ? 'none' : 'block';
+            document.querySelector('.done-btn').innerText = history.style.display === 'block' ? '🙈 HIDE DONE' : '✅ SHOW DONE';
+        }
+    </script>
+</body>
+</html>
