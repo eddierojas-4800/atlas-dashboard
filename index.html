@@ -87,6 +87,9 @@
         .detail-toggle { background: #fd7e14; margin-left: 10px; font-size: 0.8rem; padding: 2px 8px; border-radius: 5px; color: white; border: none; cursor: pointer; }
         .viaje-details { display: none; padding: 15px; background: white; border: 1px solid #fd7e14; border-top: none; border-radius: 0 0 10px 10px; }
         .ttd-list .task-item { background: #fdf2e9; margin-bottom: 5px; }
+
+        /* Date picker styling for deliveries */
+        input.delivery-date { font-family: 'Poppins', sans-serif; font-weight: 800; color: #333; font-size: 0.8rem; background: #fff; padding: 4px 10px; border-radius: 5px; border: 1px solid #ddd; outline: none; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -182,10 +185,10 @@
         <summary class="section-summary">🚀 PRÓXIMAS ENTREGAS <button class="add-btn" onclick="addDelivery()">+</button></summary>
         <div class="section-content">
             <div id="delivery-list">
-                <div class="delivery-item"><span class="delivery-name" contenteditable="true">C36</span><span class="delivery-date" contenteditable="true">18 Abr (Pnd)</span></div>
-                <div class="event-item"><span class="delivery-name" contenteditable="true">Arzán</span><span class="delivery-date" contenteditable="true">HOY (20 Abr) 💰</span></div>
-                <div class="delivery-item"><span class="delivery-name" contenteditable="true">BEP</span><span class="delivery-date" contenteditable="true">30 Abril</span></div>
-                <div class="delivery-item"><span class="delivery-name" contenteditable="true">DDA</span><span class="delivery-date" contenteditable="true">7 Mayo</span></div>
+                <div class="delivery-item"><span class="delivery-name" contenteditable="true">C36</span><input type="date" class="delivery-date" value="2026-04-18"></div>
+                <div class="delivery-item"><span class="delivery-name" contenteditable="true">Arzán</span><input type="date" class="delivery-date" value="2026-04-20"></div>
+                <div class="delivery-item"><span class="delivery-name" contenteditable="true">BEP</span><input type="date" class="delivery-date" value="2026-04-30"></div>
+                <div class="delivery-item"><span class="delivery-name" contenteditable="true">DDA</span><input type="date" class="delivery-date" value="2026-05-07"></div>
             </div>
         </div>
     </details>
@@ -358,6 +361,21 @@
             if (el) new Sortable(el, { group: 'shared', animation: 150, ghostClass: 'ghost', filter: '[contenteditable="true"]', preventOnFilter: false });
         });
 
+        // Auto-clear placeholders on focus
+        const placeholderValues = ['#PRY', 'CLIENTE', 'NOMBRE PROYECTO', 'PROYECTO', 'PROVEEDOR', 'ROL', 'PND', '$0.00', 'Nueva entrada...', 'Nuevo reply...', 'Nuevo', 'Fecha'];
+        document.addEventListener('focusin', function(e) {
+            if (e.target.isContentEditable || e.target.tagName === 'INPUT') {
+                const text = (e.target.innerText || e.target.value || '').trim();
+                if (placeholderValues.includes(text)) {
+                    if (e.target.isContentEditable) {
+                        e.target.innerText = '';
+                    } else {
+                        e.target.value = '';
+                    }
+                }
+            }
+        });
+
         function addTask(listId) {
             const list = document.getElementById(listId);
             const li = document.createElement('li');
@@ -375,7 +393,7 @@
             const list = document.getElementById('delivery-list');
             const div = document.createElement('div');
             div.className = 'delivery-item';
-            div.innerHTML = `<span class="delivery-name" contenteditable="true">Nuevo</span><span class="delivery-date" contenteditable="true">Fecha</span>`;
+            div.innerHTML = `<span class="delivery-name" contenteditable="true">Nuevo</span><input type="date" class="delivery-date">`;
             list.appendChild(div);
         }
 
@@ -456,11 +474,10 @@
                 doneItem.style.padding = '8px'; 
                 doneItem.style.borderBottom = '1px solid #eee';
                 doneItem.innerHTML = listItem.innerHTML;
-                doneItem.querySelector('input[type="checkbox"]').checked = true; // Ensure it's marked as done in history
+                doneItem.querySelector('input[type="checkbox"]').checked = true;
                 doneList.appendChild(doneItem);
             } else {
                 listItem.style.display = 'flex'; 
-                // Remove from done list if unchecked (optional, depending on desired behavior)
                 const correspondingDoneItem = Array.from(doneList.children).find(item => {
                     const title1 = item.querySelector('.task-title')?.textContent;
                     const title2 = listItem.querySelector('.task-title')?.textContent;
@@ -505,7 +522,7 @@
                     localStorage.setItem('atlas_auth', 'true');
                 }
                 document.getElementById('password-overlay').style.display = 'none';
-                document.getElementById('password-overlay').style.zIndex = '-1'; // Move it out of the way
+                document.getElementById('password-overlay').style.zIndex = '-1';
             } else {
                 errorMessage.style.display = 'block';
             }
@@ -563,9 +580,11 @@
 
             const eerrList = document.getElementById('eerr-list');
             eerrList.innerHTML = '';
+            let totalGeneralUtilidad = 0;
             for (const pry in projects) {
                 const p = projects[pry];
                 const util = p.income - p.expense;
+                totalGeneralUtilidad += util;
                 const div = document.createElement('div');
                 div.className = 'cobranza-item';
                 div.style = 'display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee;';
@@ -575,6 +594,16 @@
                 `;
                 eerrList.appendChild(div);
             }
+
+            const currentYear = new Date().getFullYear();
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'cobranza-item';
+            summaryDiv.style = 'display:flex; justify-content:space-between; padding:14px 10px; margin-top:10px; border-top:3px solid #1c1e21; background:#f8f9fa; border-radius:8px; border-left:5px solid #1c1e21;';
+            summaryDiv.innerHTML = `
+                <span style="font-weight:800; font-size:1rem; text-transform:uppercase;">TOTAL GENERAL (AÑO EN CURSO ${currentYear})</span>
+                <span style="font-weight:800; font-size:1.1rem; color:${totalGeneralUtilidad >= 0 ? '#28a745' : '#dc3545'};">Utilidad: $${totalGeneralUtilidad.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+            `;
+            eerrList.appendChild(summaryDiv);
         }
 
         // Math evaluation for cobranza amounts
