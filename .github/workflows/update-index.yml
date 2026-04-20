@@ -2,6 +2,7 @@ name: Update Index HTML
 on:
   repository_dispatch:
     types: [update-index]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -9,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download and update
+      - name: Download file
         run: |
-          curl -sL "${{ github.event.client_payload.url }}" -o index.html
-          wc -c index.html
+          URL="https://customer-assets.emergentagent.com/wingman/d39cc565-6b84-485a-8b98-8338caaf7fd9/attachments/5c7371c8d76e4595a14c01f92de374aa_index_decoded.html"
+          curl -sL "$URL" -o index.html
+          echo "Downloaded $(wc -c < index.html) bytes"
+          head -1 index.html
       - name: Commit
         run: |
           git config user.name 'atlas-bot'
           git config user.email 'bot@atlas.com'
           git add index.html
-          git diff --cached --quiet || git commit -m 'Update index.html via workflow'
-          git push
+          git diff --cached --quiet && echo 'No changes' || (git commit -m 'Update index.html with full content from S3' && git push)
