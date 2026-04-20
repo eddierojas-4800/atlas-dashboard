@@ -31,9 +31,12 @@
         .viajes-sec { border-top-color: #fd7e14; } .viajes-sec .section-summary { color: #fd7e14; }
 
         .event-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
-        .event-item { background: #fff5f5; border-left: 5px solid #ff4444; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .event-item { background: #fff5f5; border-left: 5px solid #ff4444; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; transition: 0.3s; }
+        .event-content { flex-grow: 1; }
         .event-time { font-weight: 800; color: #1c1e21; display: block; margin-bottom: 5px; }
         .event-title { color: #b71c1c; font-weight: 700; }
+        .event-done .event-content { text-decoration: line-through; opacity: 0.5; }
+        .event-feedback { font-size: 0.75rem; color: #666; margin-top: 8px; border-top: 1px dashed #ccc; padding-top: 5px; outline: none; }
 
         .focus-slots { display: flex; flex-direction: column; gap: 12px; }
         .slot { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.3); min-height: 60px; color: white; }
@@ -111,10 +114,38 @@
         <summary class="section-summary">📅 CALENDAR IMPORTANT EVENTS</summary>
         <div class="section-content">
             <div class="event-list">
-                <div class="event-item"><span class="event-time">Lunes 20 Abr - 09:30 AM</span><span class="event-title">Reunion con Richie 🐣</span></div>
-                <div class="event-item"><span class="event-time">Lunes 20 Abr - 11:00 AM</span><span class="event-title">Paola Ruiz: Agenda Reunion con Viubux</span></div>
-                <div class="event-item"><span class="event-time">Martes 21 Abr - 11:00 AM</span><span class="event-title">Reunion con Jesús Durazo</span></div>
-                <div class="event-item"><span class="event-time">Miércoles 22 Abr - 09:30 AM</span><span class="event-title">Armando Bojóruquez y Cervantes</span></div>
+                <div class="event-item">
+                    <input type="checkbox" onchange="this.parentElement.classList.toggle('event-done', this.checked)">
+                    <div class="event-content">
+                        <span class="event-time">Lunes 20 Abr - 09:30 AM</span>
+                        <span class="event-title">Reunion con Richie 🐣</span>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" onchange="this.parentElement.classList.toggle('event-done', this.checked)">
+                    <div class="event-content">
+                        <span class="event-time">Lunes 20 Abr - 11:00 AM</span>
+                        <span class="event-title">Paola Ruiz: Agenda Reunion con Viubux</span>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" onchange="this.parentElement.classList.toggle('event-done', this.checked)">
+                    <div class="event-content">
+                        <span class="event-time">Martes 21 Abr - 11:00 AM</span>
+                        <span class="event-title">Reunion con Jesús Durazo</span>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <input type="checkbox" onchange="this.parentElement.classList.toggle('event-done', this.checked)">
+                    <div class="event-content">
+                        <span class="event-time">Miércoles 22 Abr - 09:30 AM</span>
+                        <span class="event-title">Armando Bojóruquez y Cervantes</span>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                    </div>
+                </div>
             </div>
         </div>
     </details>
