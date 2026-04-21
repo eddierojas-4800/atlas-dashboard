@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATLAS - Master Matrix (Secure)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
@@ -130,7 +130,7 @@
                     <div class="event-content">
                         <span class="event-time">Lunes 20 Abr - 09:30 AM</span>
                         <span class="event-title">Reunion con Richie 🐒</span>
-                        <div class="event-feedback" contenteditable="true">Terminar de armar P&A y empezar a subir links de distribuciòn</div>
+                        <div class="event-feedback" contenteditable="true">Terminar de armar P&amp;A y empezar a subir links de distribuciòn</div>
                     </div>
                 </div>
                 <div class="event-item">
@@ -207,19 +207,19 @@
         <summary class="section-summary">💰 COBRANZA (CXC): <span id="cxc-subtotal">$36,630.25</span> <button class="add-btn" onclick="addCXC()">+</button></summary>
         <div class="section-content">
             <div id="cxc-list">
-                <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 1fr 120px auto; gap:10px; align-items:center;">
+                <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 120px auto; gap:10px; align-items:center;">
                     <span class="cxc-pry" contenteditable="true" style="font-weight:bold; color:#28a745;">#24612</span>
                     <span class="cxc-cliente" contenteditable="true">Adriana Castro</span>
                     <span class="cxc-proyecto" contenteditable="true">Bombas en el Paraíso</span>
                     <span class="cobranza-amount" contenteditable="true" oninput="updateFinance()">$25,000.00</span>
-                    <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&view=grid', '_blank')">... más info</button>
+                    <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&amp;view=grid', '_blank')">... más info</button>
                 </div>
-                <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 1fr 120px auto; gap:10px; align-items:center;">
+                <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 120px auto; gap:10px; align-items:center;">
                     <span class="cxc-pry" contenteditable="true" style="font-weight:bold; color:#28a745;">#PRY</span>
                     <span class="cxc-cliente" contenteditable="true">Red Squid</span>
                     <span class="cxc-proyecto" contenteditable="true">INSTA WIN</span>
                     <span class="cobranza-amount" contenteditable="true" oninput="updateFinance()">675*17.23</span>
-                    <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&view=grid', '_blank')">... más info</button>
+                    <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&amp;view=grid', '_blank')">... más info</button>
                 </div>
                 </div>
             </div>
@@ -426,7 +426,8 @@
                 <span class="cxc-cliente" contenteditable="true">CLIENTE</span>
                 <span class="cxc-proyecto" contenteditable="true">NOMBRE PROYECTO</span>
                 <span class="cobranza-amount" contenteditable="true" oninput="updateFinance()">$0.00</span>
-                <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&view=grid', '_blank')">... más info</button>`;
+                <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&amp;view=grid', '_blank')">... más info</button>
+            `;
             list.appendChild(div);
             updateFinance();
         }
@@ -442,7 +443,8 @@
                 <span class="cxp-proveedor" contenteditable="true">PROVEEDOR</span>
                 <span class="cxp-role" contenteditable="true">ROL</span>
                 <span class="cxp-amount cobranza-amount" contenteditable="true" oninput="updateFinance()">$0.00</span>
-                <button class="detail-toggle" style="background:#dc3545;" onclick="window.open('https://app.smartsheet.com/sheets/QwFFFc5p67g7jHJf6mr2cg4gx2hh9jPr6pJx58M1?view=grid', '_blank')">... más info</button>`;
+                <button class="detail-toggle" style="background:#dc3545;" onclick="window.open('https://app.smartsheet.com/sheets/QwFFFc5p67g7jHJf6mr2cg4gx2hh9jPr6pJx58M1?view=grid', '_blank')">... más info</button>
+            `;
             list.appendChild(div);
             updateFinance();
         }
@@ -451,146 +453,210 @@
             const list = document.getElementById('viajes-list');
             const div = document.createElement('div');
             div.className = 'viaje-item-container';
-            div.innerHTML = `<div class="viaje-item">
-                    <span class="viaje-dest" contenteditable="true">Destino</span>
+            div.innerHTML = `
+                <div class="viaje-item">
+                    <span class="viaje-dest" contenteditable="true">Nuevo destino</span>
                     <span class="viaje-date" contenteditable="true">Fecha</span>
                     <button class="detail-toggle" onclick="toggleTripDetails(this)">... MÁS INFO</button>
                 </div>
-                <div class="viaje-details" style="display:none;">
-                    <div class="viaje-info" contenteditable="true" style="font-size:0.85rem; min-height:40px; background:#fefefe; padding:8px; border:1px solid #ddd; border-radius:5px;">Info del viaje...</div>
+                <div class="viaje-details">
+                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">⭐ INFO &amp; RESERVAS:</div>
+                    <div class="viaje-info" contenteditable="true" style="font-size:0.85rem; min-height:40px; margin-bottom:10px; background:#fefefe; padding:8px; border:1px solid #ddd; border-radius:5px;"></div>
+                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">✅ TTD LIST (Actividades):</div>
+                    <ul class="ttd-list"></ul>
+                    <button class="add-btn" style="background:#fd7e14; width:auto; border-radius:5px; height:auto; padding:5px 10px;" onclick="addTask(this.previousElementSiblingSibling.id)">+ Actividad</button>
                 </div>`;
             list.appendChild(div);
         }
 
         function toggleTripDetails(btn) {
-            const container = btn.closest('.viaje-item-container');
-            const details = container.querySelector('.viaje-details');
-            if (details) {
-                details.style.display = details.style.display === 'none' ? 'block' : 'none';
+            const details = btn.parentNode.nextElementSibling;
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+            btn.innerText = details.style.display === 'block' ? '... CERRAR INFO' : '... MÁS INFO';
+        }
+
+        function toggleDone() {
+            const history = document.getElementById('done-history');
+            history.style.display = history.style.display === 'block' ? 'none' : 'block';
+            document.querySelector('.done-btn').innerText = history.style.display === 'block' ? '⭐ OCULTAR DONE' : '⭐ SHOW DONE';
+        }
+
+        function handleTaskCompletion(checkbox) {
+            const listItem = checkbox.closest('.task-item');
+            const doneHistory = document.getElementById('done-history');
+            const doneList = document.getElementById('done-list');
+            
+            if (checkbox.checked) {
+                listItem.style.display = 'none';
+                const doneItem = document.createElement('li');
+                doneItem.className = 'task-item';
+                doneItem.style.padding = '8px'; 
+                doneItem.style.borderBottom = '1px solid #eee';
+                doneItem.innerHTML = listItem.innerHTML;
+                doneItem.querySelector('input[type="checkbox"]').checked = true;
+                doneList.appendChild(doneItem);
+            } else {
+                listItem.style.display = 'flex'; 
+                const correspondingDoneItem = Array.from(doneList.children).find(item => {
+                    const title1 = item.querySelector('.task-title')?.textContent;
+                    const title2 = listItem.querySelector('.task-title')?.textContent;
+                    return title1 === title2;
+                });
+                if (correspondingDoneItem) {
+                    doneList.removeChild(correspondingDoneItem);
+                }
             }
+            
+            if (doneList.children.length === 0) {
+                doneHistory.style.display = 'none';
+            } else {
+                doneHistory.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox') {
+                handleTaskCompletion(e.target);
+            }
+        });
+
+        function triggerSync() {
+            document.querySelectorAll('.save-btn').forEach(btn => {
+                btn.innerHTML = "🔄 SYNCING...";
+                btn.style.backgroundColor = "#ffc107"; 
+                setTimeout(() => {
+                    btn.innerHTML = "⭐ GUARDAR (SYNC)";
+                    btn.style.backgroundColor = "#28a745";
+                }, 1000);
+            });
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            const rememberMe = document.getElementById('remember-me').checked;
+            const errorMessage = document.getElementById('error-msg');
+            
+            if (password === 'EDUX4800') {
+                if (rememberMe) {
+                    localStorage.setItem('atlas_auth', 'true');
+                }
+                document.getElementById('password-overlay').style.display = 'none';
+                document.getElementById('password-overlay').style.zIndex = '-1';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('atlas_auth');
+            location.reload();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('atlas_auth') === 'true') {
+                document.getElementById('password-overlay').style.display = 'none';
+                document.getElementById('password-overlay').style.zIndex = '-1';
+            }
+
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+        });
+
+        function parseCurrency(str) {
+            return parseFloat(str.replace(/[^0-9.-]+/g,"")) || 0;
         }
 
         function updateFinance() {
-            function parseAmount(str) {
-                str = String(str || '').replace(/[$,\s]/g, '');
-                try { return eval(str) || 0; } catch(e) { return parseFloat(str) || 0; }
-            }
-            let cxc = 0;
-            document.querySelectorAll('#cxc-list .cobranza-amount').forEach(el => { cxc += parseAmount(el.innerText || el.textContent); });
-            const cxcEl = document.getElementById('cxc-subtotal');
-            if (cxcEl) cxcEl.textContent = '$' + cxc.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+            let cxcTotal = 0;
+            let cxpTotal = 0;
+            const projects = {};
 
-            let cxp = 0;
-            document.querySelectorAll('#cxp-list .cxp-amount').forEach(el => { cxp += parseAmount(el.innerText || el.textContent); });
-            const cxpEl = document.getElementById('cxp-subtotal');
-            if (cxpEl) cxpEl.textContent = '$' + cxp.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
-
-            const netEl = document.getElementById('net-balance');
-            if (netEl) netEl.textContent = '$' + (cxc - cxp).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
-        }
-
-        const CORRECT_PASSWORD = 'Atlas2024';
-        const TOKEN_KEY = 'atlas_auth_token_v2';
-        const TOKEN_VALUE = 'atlas_secure_' + btoa(CORRECT_PASSWORD);
-
-        function checkPassword() {
-            const input = document.getElementById('password-input').value;
-            if (input === CORRECT_PASSWORD) {
-                if (document.getElementById('remember-me').checked) {
-                    localStorage.setItem(TOKEN_KEY, TOKEN_VALUE);
+            document.querySelectorAll('#cxc-list .cobranza-item').forEach(item => {
+                const pry = item.querySelector('.cxc-pry')?.innerText.trim() || '';
+                const name = item.querySelector('.cxc-proyecto')?.innerText.trim() || '';
+                const amt = parseCurrency(item.querySelector('.cobranza-amount')?.innerText || '$0.00');
+                cxcTotal += amt;
+                if (pry &amp;&amp; pry !== '#PRY') {
+                    if (!projects[pry]) projects[pry] = { name: name, income: 0, expense: 0 };
+                    projects[pry].income += amt;
                 }
-                document.getElementById('password-overlay').style.display = 'none';
-            } else {
-                document.getElementById('error-msg').style.display = 'block';
-                document.getElementById('password-input').value = '';
+            });
+
+            document.querySelectorAll('#cxp-list .cobranza-item').forEach(item => {
+                const pry = item.querySelector('.cxp-pry')?.innerText.trim() || '';
+                const name = item.querySelector('.cxp-proyecto')?.innerText.trim() || '';
+                const amt = parseCurrency(item.querySelector('.cxp-amount')?.innerText || '$0.00');
+                cxpTotal += amt;
+                if (pry &amp;&amp; pry !== '#PRY') {
+                    if (!projects[pry]) projects[pry] = { name: name, income: 0, expense: 0 };
+                    projects[pry].expense += amt;
+                }
+            });
+
+            document.getElementById('cxc-subtotal').innerText = '$' + cxcTotal.toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('cxp-subtotal').innerText = '$' + cxpTotal.toLocaleString('en-US', {minimumFractionDigits: 2});
+
+            const eerrList = document.getElementById('eerr-list');
+            eerrList.innerHTML = '';
+            let totalGeneralUtilidad = 0;
+            for (const pry in projects) {
+                const p = projects[pry];
+                const util = p.income - p.expense;
+                totalGeneralUtilidad += util;
+                const div = document.createElement('div');
+                div.className = 'cobranza-item';
+                div.style = 'display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee;';
+                div.innerHTML = `
+                    <span style="font-weight:bold;">${pry} - ${p.name}</span>
+                    <span style="font-weight:800; color:${util >= 0 ? '#28a745' : '#dc3545'};">Utilidad: $${util.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                `;
+                eerrList.appendChild(div);
             }
+
+            const currentYear = new Date().getFullYear();
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'cobranza-item';
+            summaryDiv.style = 'display:flex; justify-content:space-between; padding:14px 10px; margin-top:10px; border-top:3px solid #1c1e21; background:#f8f9fa; border-radius:8px; border-left:5px solid #1c1e21;';
+            summaryDiv.innerHTML = `
+                <span style="font-weight:800; font-size:1rem; text-transform:uppercase;">TOTAL GENERAL (AÑO EN CURSO ${currentYear})</span>
+                <span style="font-weight:800; font-size:1.1rem; color:${totalGeneralUtilidad >= 0 ? '#28a745' : '#dc3545'};">Utilidad: $${totalGeneralUtilidad.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+            `;
+            eerrList.appendChild(summaryDiv);
         }
-        document.getElementById('password-input').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') checkPassword();
+
+        // Math evaluation for cobranza amounts
+        document.addEventListener('keydown', (e) => {
+            if (e.target.classList.contains('cobranza-amount') &amp;&amp; e.key === 'Enter') {
+               e.preventDefault();
+                let raw = e.target.innerText.replace('$', '').replace(/,/g, '').trim();
+                try {
+                    let sanitized = raw.replace(/[^-()\d/*+.]/g, '');
+                    if (sanitized) {
+                        let result = eval(sanitized);
+                        e.target.innerText = '$' + Number(result).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    }
+                } catch(err) {
+                    console.error('Math eval error:', err);
+                }
+                e.target.blur();
+                updateFinance();
+            }
         });
 
-        function logout() {
-            localStorage.removeItem(TOKEN_KEY);
-            document.getElementById('password-overlay').style.display = 'flex';
-        }
-
-        (function() {
-            if (localStorage.getItem(TOKEN_KEY) === TOKEN_VALUE) {
-                document.getElementById('password-overlay').style.display = 'none';
-            }
-        })();
-
-        let doneVisible = false;
-        function toggleDone() {
-            doneVisible = !doneVisible;
-            const doneEl = document.getElementById('done-history');
-            const doneList = document.getElementById('done-list');
-            if (doneVisible) {
-                doneList.innerHTML = '';
-                document.querySelectorAll('.task-item input[type="checkbox"]:checked').forEach(cb => {
-                    const titleEl = cb.closest('.task-item').querySelector('.task-title');
-                    if (titleEl) {
-                        const li = document.createElement('li');
-                        li.style.padding = '8px 0'; li.style.borderBottom = '1px solid #eee';
-                        li.textContent = '✅ ' + (titleEl.innerText || titleEl.textContent);
-                        doneList.appendChild(li);
-                    }
-                });
-                doneEl.style.display = 'block';
-            } else {
-                doneEl.style.display = 'none';
-            }
-        }
-
-        const GITHUB_TOKEN = 'ghp_PLACEHOLDER_TOKEN';
-        const GITHUB_OWNER = 'eddierojas-4800';
-        const GITHUB_REPO = 'atlas-dashboard';
-        const GITHUB_BRANCH = 'main';
-        const GITHUB_FILE_PATH = 'index.html';
-        const GIST_TOKEN = 'ghp_PLACEHOLDER_GIST_TOKEN';
-        const GIST_ID = 'PLACEHOLDER_GIST_ID';
-
-        async function triggerSync() {
-            const btn = document.querySelector('.save-btn');
-            btn.textContent = '⏳ Guardando...';
-            btn.disabled = true;
-            try {
-                const htmlContent = document.documentElement.outerHTML;
-                const encoded = btoa(unescape(encodeURIComponent(htmlContent)));
-                let sha = '';
-                try {
-                    const getResp = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`, {
-                        headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
-                    });
-                    const getData = await getResp.json();
-                    sha = getData.sha || '';
-                } catch(e) { sha = ''; }
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`, {
-                    method: 'PUT',
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
-                    body: JSON.stringify({
-                        message: 'ATLAS auto-sync: ' + new Date().toISOString(),
-                        content: encoded,
-                        sha: sha,
-                        branch: GITHUB_BRANCH
-                    })
-                });
-                if (response.ok) {
-                    btn.textContent = '✅ ¡Guardado!';
-                    btn.style.background = '#28a745';
-                } else {
-                    const err = await response.json();
-                    btn.textContent = '❌ Error: ' + (err.message || 'Sync failed');
-                    btn.style.background = '#dc3545';
+        // Auto-format on blur too
+        document.addEventListener('focusout', (e) => {
+            if (e.target.classList.contains('cobranza-amount')) {
+                let raw = e.target.innerText.replace('$', '').replace(/,/g, '').trim();
+                if (!isNaN(parseFloat(raw)) &amp;&amp; isFinite(raw)) {
+                    e.target.innerText = '$' + Number(raw).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2});
+                } else if (e.target.innerText === '' || e.target.innerText === '$') {
+                    e.target.innerText = '$0.00';
                 }
-            } catch(error) {
-                btn.textContent = '❌ Error de red';
-                btn.style.background = '#dc3545';
             }
-            setTimeout(() => { btn.textContent = '⭐ GUARDAR (SYNC)'; btn.style.background = '#28a745'; btn.disabled = false; }, 3000);
-        }
+        });
 
-        updateFinance();
+        setTimeout(updateFinance, 500);
     </script>
 </body>
 </html>
