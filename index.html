@@ -48,7 +48,7 @@
         .viaje-item { border-left-color: #fd7e14; background-color: #fff4e6; }
         
         .delivery-name, .cobranza-name, .viaje-dest { font-weight: 700; color: #1c1e21; outline: none; }
-        .delivery-date, .cobranza-amount, .viaje-date { font-weight: 800; color: #333; font-size: 0.8rem; background:#fff; padding: 4px 10px; border-radius: 5px; outline: none; }
+        .delivery-date, .cobranza-amount, .viaje-date { font-weight: 800; color: #333; font-size: 0.8rem; background: #fff; padding: 4px 10px; border-radius: 5px; outline: none; }
 
         .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .quadrant { padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 200px; position: relative; }
@@ -61,7 +61,7 @@
         ul { list-style-type: none; padding: 0; margin: 0; min-height: 20px; }
         .task-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; padding: 10px; background: rgba(255,255,255,0.85); border-radius: 10px; border: 1px solid transparent; cursor: grab; transition: 0.2s; width: 100%; box-sizing: border-box; }
         .task-item:hover { border-color: #ccc; background: #fff; }
-        .task-item input[type="checkbox"] { width: 11px; height: 17px; cursor: pointer; margin-top: 4px; }
+        .task-item input[type="checkbox"] { width: 17px; height: 17px; cursor: pointer; margin-top: 4px; }
         .task-item input[type="checkbox"]:checked + .task-content .task-title { text-decoration: line-through; opacity: 0.5; }
         .task-content { flex-grow: 1; min-width: 0; }
         .task-title { font-weight: 600; font-size: 0.9rem; color: #1c1e21; outline: none; display: block; }
@@ -93,7 +93,7 @@
     </style>
 </head>
 <body>
-    <div id="password-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#1c1e21; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white;">
+    <div id="password-overlay">
         <h2 style="color:#ffd700; margin-bottom:20px;">ATLAS SECURE ACCESS</h2>
         <input type="password" id="password-input" placeholder="Password">
         <div style="margin-bottom:20px; font-size:0.9rem;">
@@ -106,23 +106,23 @@
     <div class="top-bar">
         <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACKSURBVDhPpc8xDsAwDEXhUoFqgJRAkVAq0CBsICgIih6EIgIKgYp6qT2jW/mZ9jB43xZ/uJv25e7r9b6nKxH05W4D2j35b3vNf0y6PevXF0jO9t1XkH0jHj6vGqPj05M6wJt5fU8H6e781D1N/Fwz1E48/61y7I5m2hYv46n+y9iXkY7X/i153eF0gAAAAAASUVORK5CYII=" style="vertical-align: middle; margin-right: 5px;"> ATLAS Master Matrix</h1>
         <div class="btn-group">
-            <button class="done-btn" onclick="toggleDone()">★ SHOW DONE</button>
+            <button class="done-btn" onclick="toggleDone()">⭐ SHOW DONE</button>
             <button class="logout-btn" onclick="logout()">LOGOUT</button>
-            <button class="save-btn" onclick="triggerSync()">★ GUARDAR (SYNC)</button>
+            <button class="save-btn" onclick="triggerSync()">⭐ GUARDAR (SYNC)</button>
         </div>
     </div>
 
     <!-- CALENDAR -->
-    <details class="section-container calendar-sec" open>
-        <summary class="section-summary">📅 CALENDAR IMPORTANT EVENTS</summary>
+    <details class="section-container calendar-sec" open="">
+        <summary class="section-summary">🗓️ CALENDAR IMPORTANT EVENTS</summary>
         <div class="section-content">
             <div class="event-list">
                 <div class="event-item">
                     <input type="checkbox" onchange="this.parentElement.classList.toggle('event-done', this.checked)">
                     <div class="event-content">
                         <span class="event-time">Lunes 20 Abr - 09:30 AM</span>
-                        <span class="event-title">Reunion con Richie 🐣</span>
-                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                        <span class="event-title">Reunion con Richie 🐒</span>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ____________</div>
                     </div>
                 </div>
                 <div class="event-item">
@@ -130,7 +130,7 @@
                     <div class="event-content">
                         <span class="event-time">Lunes 20 Abr - 11:00 AM</span>
                         <span class="event-title">Paola Ruiz: Agenda Reunion con Viubux</span>
-                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ____________</div>
                     </div>
                 </div>
                 <div class="event-item">
@@ -138,15 +138,15 @@
                     <div class="event-content">
                         <span class="event-time">Martes 21 Abr - 11:00 AM</span>
                         <span class="event-title">Reunion con Jesús Durazo</span>
-                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ____________</div>
                     </div>
                 </div>
                 <div class="event-item">
                     <input type="checkbox" onchange="this.parentElement.classList.toggle('event-done', this.checked)">
                     <div class="event-content">
                         <span class="event-time">Miércoles 22 Abr - 09:30 AM</span>
-                        <span class="event-title">Armando Bojóruquez y Cervantes</span>
-                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ___________</div>
+                        <span class="event-title">Armando Bojórquez y Cervantes</span>
+                        <div class="event-feedback" contenteditable="true">¿cómo te fue? conclusiones y siguientes pasos: ____________</div>
                     </div>
                 </div>
             </div>
@@ -154,26 +154,26 @@
     </details>
 
     <!-- FOCUS -->
-    <details class="section-container focus-sec" open>
+    <details class="section-container focus-sec" open="">
         <summary class="section-summary">⭐ FOCUS: THE NEXT 3 PRIORITIES - SUPER ENFORCE</summary>
         <div class="section-content">
             <div class="focus-slots">
                 <div class="slot">
                     <div class="slot-number">1</div>
                     <ul id="f1-list" class="slot-list">
-                        <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Pagar Impuestos ROSC810421BP3 ($56,240) 💸</span><span class="task-status" contenteditable="true">HOY - URGENTE</span></div></li>
+                        <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Pagar Impuestos ROSC810421BP3 ($56,240) 💰</span><span class="task-status" contenteditable="true">HOY - URGENTE</span></div></li>
                     </ul>
                 </div>
                 <div class="slot">
                     <div class="slot-number">2</div>
                     <ul id="f2-list" class="slot-list">
-                        <li class="task-item"><input type="checkbox" checked><div class="task-content"><span class="task-title" contenteditable="true">C36 música 🎶</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li>
+                        <li class="task-item"><input type="checkbox" checked=""><div class="task-content"><span class="task-title" contenteditable="true">C36 música 🎵</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li>
                     </ul>
                 </div>
                 <div class="slot">
                     <div class="slot-number">3</div>
                     <ul id="f3-list" class="slot-list">
-                        <li class="task-item"><input type="checkbox" checked><div class="task-content"><span class="task-title" contenteditable="true">pagar facturas JARPA 💸</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li>
+                        <li class="task-item"><input type="checkbox" checked=""><div class="task-content"><span class="task-title" contenteditable="true">pagar facturas JARPA 💰</span><span class="task-status" contenteditable="true">SUPER FOCUS</span></div></li>
                     </ul>
                 </div>
             </div>
@@ -181,10 +181,11 @@
     </details>
 
     <!-- DELIVERIES -->
-    <details class="section-container delivery-sec" open>
+    <details class="section-container delivery-sec" open="">
         <summary class="section-summary">🚀 PRÓXIMAS ENTREGAS <button class="add-btn" onclick="addDelivery()">+</button></summary>
         <div class="section-content">
             <div id="delivery-list">
+                <div class="delivery-item"><span class="delivery-name" contenteditable="true">Secretos del restaurante: Aumenta la rentabilidad</span><input type="date" class="delivery-date" value="2026-04-20"></div>
                 <div class="delivery-item"><span class="delivery-name" contenteditable="true">C36</span><input type="date" class="delivery-date" value="2026-04-18"></div>
                 <div class="delivery-item"><span class="delivery-name" contenteditable="true">Arzán</span><input type="date" class="delivery-date" value="2026-04-20"></div>
                 <div class="delivery-item"><span class="delivery-name" contenteditable="true">BEP</span><input type="date" class="delivery-date" value="2026-04-30"></div>
@@ -194,50 +195,58 @@
     </details>
 
     <!-- COBRANZA (CXC) -->
-    <details class="section-container cobranza-sec" open>
-        <summary class="section-summary">💸 COBRANZA (CXC): <span id="cxc-subtotal">$0.00</span> <button class="add-btn" onclick="addCXC()">+</button></summary>
+    <details class="section-container cobranza-sec" open="">
+        <summary class="section-summary">💰 COBRANZA (CXC): <span id="cxc-subtotal">$36,630.25</span> <button class="add-btn" onclick="addCXC()">+</button></summary>
         <div class="section-content">
             <div id="cxc-list">
                 <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 1fr 120px auto; gap:10px; align-items:center;">
-                    <span class="cxc-pry" contenteditable="true" style="font-weight:bold; color:#28a745;">#PRY</span>
-                    <span class="cxc-cliente" contenteditable="true">CLIENTE</span>
-                    <span class="cxc-proyecto" contenteditable="true">NOMBRE PROYECTO</span>
-                    <span class="cobranza-amount" contenteditable="true" oninput="updateFinance()">$0.00</span>
+                    <span class="cxc-pry" contenteditable="true" style="font-weight:bold; color:#28a745;">#24612</span>
+                    <span class="cxc-cliente" contenteditable="true">Adriana Castro</span>
+                    <span class="cxc-proyecto" contenteditable="true">Bombas en el Paraíso</span>
+                    <span class="cobranza-amount" contenteditable="true" oninput="updateFinance()">$25,000.00</span>
                     <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&view=grid', '_blank')">... más info</button>
+                </div>
+                <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 1fr 120px auto; gap:10px; align-items:center;">
+                    <span class="cxc-pry" contenteditable="true" style="font-weight:bold; color:#28a745;">#PRY</span>
+                    <span class="cxc-cliente" contenteditable="true">Red Squid</span>
+                    <span class="cxc-proyecto" contenteditable="true">INSTA WIN</span>
+                    <span class="cobranza-amount" contenteditable="true" oninput="updateFinance()">675*17.23</span>
+                    <button class="detail-toggle" onclick="window.open('https://app.smartsheet.com/sheets/wgH3j9HVfm3xPXgmf7VG64vwVg8f4M38624mC7C1?filterId=7509888600434564&view=grid', '_blank')">... más info</button>
+                </div>
                 </div>
             </div>
         </div>
     </details>
 
     <!-- CUENTAS POR PAGAR (CXP) -->
-    <details class="section-container" style="border-top: 8px solid #dc3545;" open>
-        <summary class="section-summary" style="color:#dc3545;">💸 CUENTAS POR PAGAR (CXP): <span id="cxp-subtotal">$0.00</span> <button class="add-btn" onclick="addCXP()">+</button></summary>
+    <details class="section-container" style="border-top: 8px solid #dc3545;" open="">
+        <summary class="section-summary" style="color:#dc3545;">💰 CUENTAS POR PAGAR (CXP): <span id="cxp-subtotal">$18,900.00</span> <button class="add-btn" onclick="addCXP()">+</button></summary>
         <div class="section-content">
             <div id="cxp-list">
                 <div class="cobranza-item" style="display:grid; grid-template-columns: 80px 1fr 1fr 1fr 120px auto; gap:10px; align-items:center; background:#fff5f5; border-left:5px solid #dc3545;">
-                    <span class="cxp-pry" contenteditable="true" style="font-weight:bold; color:#dc3545;">#PRY</span>
-                    <span class="cxp-proyecto" contenteditable="true">NOMBRE PROYECTO</span>
-                    <span class="cxp-proveedor" contenteditable="true">PROVEEDOR</span>
-                    <span class="cxp-rol" contenteditable="true">ROL</span>
-                    <span class="cxp-amount cobranza-amount" contenteditable="true" oninput="updateFinance()">$0.00</span>
+                    <span class="cxp-pry" contenteditable="true" style="font-weight:bold; color:#dc3545;">#24612</span>
+                    <span class="cxp-proyecto" contenteditable="true">BOMBAS EN EL PARAISO</span>
+                    <span class="cxp-proveedor" contenteditable="true">BOMBAS EN EL PARAISO</span>
+                    <span class="cxp-role" contenteditable="true">PROVEEDOR</span>
+                    <span class="cxp-amount cobranza-amount" contenteditable="true" oninput="updateFinance()">18,900.00</span>
                     <button class="detail-toggle" style="background:#dc3545;" onclick="window.open('https://app.smartsheet.com/sheets/QwFFFc5p67g7jHJf6mr2cg4gx2hh9jPr6pJx58M1?view=grid', '_blank')">... más info</button>
+                </div>
                 </div>
             </div>
         </div>
     </details>
 
     <!-- ESTADO DE RESULTADOS (EERR) -->
-    <details class="section-container" style="border-top: 8px solid #6c757d;" open>
+    <details class="section-container" style="border-top: 8px solid #6c757d;" open="">
         <summary class="section-summary" style="color:#6c757d;">📊 ESTADO DE RESULTADOS (EERR)</summary>
         <div class="section-content">
             <div id="eerr-list">
-                <!-- Calculado automáticamente -->
             </div>
         </div>
     </details>
 
     <!-- VIAJES -->
-    <details class="section-container viajes-sec" open>
+    <details class="section-container viajes-sec" open="">
         <summary class="section-summary">✈️ ATLAS MASTER VIAJES <button class="add-btn" onclick="addViaje()">+</button></summary>
         <div class="section-content">
             <div id="viajes-list">
@@ -247,60 +256,65 @@
                         <span class="viaje-date" contenteditable="true">29 Abr - 03 May</span>
                         <button class="detail-toggle" onclick="toggleTripDetails(this)">... MÁS INFO</button>
                     </div>
-                    <div class="viaje-details" style="display:block;">
-                        <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">⭐ INFO & RESERVAS:</div>
-                        <div class="viaje-info" contenteditable="true" style="font-size:0.85rem; min-height:40px; margin-bottom:10px; background:#fefefe; padding:8px; border:1px solid #ddd; border-radius:5px;">
-                           gamescom latam | 29 Abril - 3 May 2026
-                           Tickets: $440 USD<br>
-                           Link: https://latam.gamescom.global/en/<br>
-                           Login: https://b2b.latam.gamescom.global/auth/users/sign_in<br>
-                           Hotel: <br>
-                           Avion: 
-                        </div>
-                        <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">★ TTD LIST (Actividades):</div>
-                        <ul class="ttd-list">
-                            <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">buy tickets ($440 usd)</span></div></li>
-                        </ul>
-                        <button class="add-btn" style="background:#fd7e14; width:auto; border-radius:5px; height:auto; padding:5px 10px;">+ Actividad</button>
+                    <div class="viaje-details" style="display:none;">
+                         <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">✦ INFO & RESERVAS:</div>
+                         <div class="viaje-info" contenteditable="true" style="font-size:0.85rem; min-height:40px; margin-bottom:10px; background:#fefefe; padding:8px; border:1px solid #ddd; border-radius:5px;">
+                            gamescom latam | 29 April - 3 May 2026<br>Tickets: $440 USD<br>Link: https://latam.gamescom.global/en/<br>Login: https://b2b.latam.gamescom.global/auth/users/sign_in<br>Hotel: <br>Avion: 
+                         </div>
                     </div>
+                </div>
+                <div class="viaje-item-container">
+                    <div class="viaje-item">
+                        <span class="viaje-dest" contenteditable="true">Tiffcom</span>
+                        <span class="viaje-date" contenteditable="true">Octubre 2026</span>
+                        <button class="detail-toggle" onclick="toggleTripDetails(this)">... MÁS INFO</button>
+                    </div>
+                </div>
+                <div class="viaje-item-container">
+                    <div class="viaje-item">
+                        <span class="viaje-dest" contenteditable="true">Gamescom Alemania</span>
+                        <span class="viaje-date" contenteditable="true">23 - 30 August 2026</span>
+                        <button class="detail-toggle" onclick="toggleTripDetails(this)">... MÁS INFO</button>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
     </details>
 
     <!-- REPLIES -->
-    <details class="section-container replies-sec" open>
+    <details class="section-container replies-sec" open="">
         <summary class="section-summary">⭐ REPLIER PENDIENTES <button class="add-btn" onclick="addTask('replies-list')">+</button></summary>
         <div class="section-content">
             <ul id="replies-list">
-                <li class="task-item"><input type="checkbox" checked><div class="reply-type-selection"><label><input type="radio" name="r_pak" value="wsp" checked> Wsp</label><label><input type="radio" name="r_pak" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Pakada (Paco)</span><span class="task-status" contenteditable="true">5X Studios / Distribución</span></div></li>
-                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_mar" value="wsp"> Wsp</label><label><input type="radio" name="r_mar" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Marisela Odremán</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
-                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_jul" value="wsp"> Wsp</label><label><input type="radio" name="r_jul" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Julieth</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
-                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_ber" value="wsp"> Wsp</label><label><input type="radio" name="r_ber" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Berenice medina</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
-                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_ric" value="wsp"> Wsp</label><label><input type="radio" name="r_ric" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Ricard</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
-                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_dub" value="wsp"> Wsp</label><label><input type="radio" name="r_dub" value="email" checked> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Dubraska de penguino</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox" checked=""><div class="reply-type-selection"><label><input type="radio" name="r_pak" value="wsp" checked=""> Wsp</label><label><input type="radio" name="r_pak" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Pakada (Paco)</span><span class="task-status" contenteditable="true">5X Studios / Distribución</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_mar" value="wsp"> Wsp</label><label><input type="radio" name="r_mar" value="email" checked=""> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Marisela Odremán</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_jul" value="wsp"> Wsp</label><label><input type="radio" name="r_jul" value="email" checked=""> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Julieth</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_ber" value="wsp"> Wsp</label><label><input type="radio" name="r_ber" value="email" checked=""> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Berenice medina</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_ric" value="wsp"> Wsp</label><label><input type="radio" name="r_ric" value="email" checked=""> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Ricardo</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
+                <li class="task-item"><input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_dub" value="wsp"> Wsp</label><label><input type="radio" name="r_dub" value="email" checked=""> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Dubraska de penguin</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
             </ul>
         </div>
     </details>
 
     <!-- MATRIX -->
-    <details class="section-container matrix-sec" open>
-        <summary class="section-summary">⭐ PRIORITIES (EISENHOWE MATRIX)</summary>
+    <details class="section-container matrix-sec" open="">
+        <summary class="section-summary">⭐ PRIORITIES (EISENHOWER MATRIX)</summary>
         <div class="section-content matrix-grid">
             <div class="quadrant q1">
                 <h3>⭐ Q1: HACE AHORA <button class="add-btn" onclick="addTask('q1-list')">+</button></h3>
                 <ul id="q1-list">
-                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Pagar Impuestos ROSC810421BP3 ($56,240) 💸</span><span class="task-status" contenteditable="true">HOY - URGENTE</span></div></li>
-                    <li class="task-item"><input type="checkbox" checked><div class="task-content"><span class="task-title" contenteditable="true">REUNION: Nacarid Portal</span><span class="task-status" contenteditable="true">HECHO 👑</span></div></li>
-                    <li class="task-item"><input type="checkbox" checked><div class="task-content"><span class="task-title" contenteditable="true">TPN: Tocar base con Eduardo</span><span class="task-status" contenteditable="true">HECHO 👑</span></div></li>
-                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Casting NU</span><span class="task-status" contenteditable="true">HOY - ACTIVO 👑</span></div></li>
-                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Casting Red Squid</span><span class="task-status" contenteditable="true">HOY - ACTIVO 👑</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Pagar Impuestos ROSC810421BP3 ($56,240) 💰</span><span class="task-status" contenteditable="true">HOY - URGENTE</span></div></li>
+                    <li class="task-item"><input type="checkbox" checked=""><div class="task-content"><span class="task-title" contenteditable="true">REUNION: Nacarid Portal</span><span class="task-status" contenteditable="true">HECHO ✅</span></div></li>
+                    <li class="task-item"><input type="checkbox" checked=""><div class="task-content"><span class="task-title" contenteditable="true">TPN: Tocar base con Eduardo</span><span class="task-status" contenteditable="true">HECHO ✅</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Casting NU</span><span class="task-status" contenteditable="true">HOY - ACTIVO ✅</span></div></li>
+                    <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Casting Red Squid</span><span class="task-status" contenteditable="true">HOY - ACTIVO ✅</span></div></li>
                     <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Yoel Sardina: Cotización audiencia</span><span class="task-status" contenteditable="true">Viernes</span></div></li>
                     <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Emilia Miranda: Welcome msg change</span><span class="task-status" contenteditable="true">Viernes</span></div></li>
                 </ul>
             </div>
             <div class="quadrant q2">
-                <h3>📅 AGENDA <button class="add-btn" onclick="addTask('q2-list')">+</button></h3>
+                <h3>🗓️ AGENDA <button class="add-btn" onclick="addTask('q2-list')">+</button></h3>
                 <ul id="q2-list">
                     <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">ALP de Miguelina en PublishDrive</span><span class="task-status" contenteditable="true">DIST</span></div></li>
                     <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Invoice RedSquid</span><span class="task-status" contenteditable="true">PENDIENTE</span></div></li>
@@ -325,7 +339,7 @@
     </details>
 
     <!-- NOTE DUMP -->
-    <details class="section-container note-sec" open>
+    <details class="section-container note-sec" open="">
         <summary class="section-summary">⭐ NOTE DUMP: LUVIA DE IDEAS <button class="add-btn" onclick="addTask('note-dump-list')">+</button></summary>
         <div class="section-content">
             <ul id="note-dump-list">
@@ -336,8 +350,8 @@
     </details>
 
     <!-- CLIENTS -->
-    <details class="section-container client-sec" open>
-        <summary class="section-summary">⭐ CLIENTES & SEGUIMIENTO ACTIVO <button class="add-btn" onclick="addTask('client-list')">+</button></summary>
+    <details class="section-container client-sec" open="">
+        <summary class="section-summary">⭐ CLIENTES &amp; SEGUIMIENTO ACTIVO <button class="add-btn" onclick="addTask('client-list')">+</button></summary>
         <div class="section-content">
             <ul id="client-list" class="client-list">
                 <li class="task-item"><input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Roger avendano</span><span class="task-status" contenteditable="true">CLIENTE</span></div></li>
@@ -350,7 +364,7 @@
     </details>
 
     <div id="done-history">
-        <h2>★ Tareas Completadas</h2>
+        <h2>⭐ Tareas Completadas</h2>
         <ul id="done-list"></ul>
     </div>
 
@@ -384,7 +398,7 @@
                 const count = Math.random().toString(36).substring(7).substring(0,7); 
                 li.innerHTML = `<input type="checkbox"><div class="reply-type-selection"><label><input type="radio" name="r_${count}" value="wsp" checked> Wsp</label><label><input type="radio" name="r_${count}" value="email"> Mail</label></div><div class="task-content"><span class="task-title" contenteditable="true">Nuevo reply...</span><span class="task-status" contenteditable="true">PENDIENTE</span></div>`;
             } else {
-                li.innerHTML = `<input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Nueva entrada...</span><span class="task-status" contenteditable="true">PND</span></div>`;
+               li.innerHTML = `<input type="checkbox"><div class="task-content"><span class="task-title" contenteditable="true">Nueva entrada...</span><span class="task-status" contenteditable="true">PND</span></div>`;
             }
             list.appendChild(li);
         }
@@ -422,7 +436,7 @@
                 <span class="cxp-pry" contenteditable="true" style="font-weight:bold; color:#dc3545;">#PRY</span>
                 <span class="cxp-proyecto" contenteditable="true">PROYECTO</span>
                 <span class="cxp-proveedor" contenteditable="true">PROVEEDOR</span>
-                <span class="cxp-rol" contenteditable="true">ROL</span>
+                <span class="cxp-role" contenteditable="true">ROL</span>
                 <span class="cxp-amount cobranza-amount" contenteditable="true" oninput="updateFinance()">$0.00</span>
                 <button class="detail-toggle" style="background:#dc3545;" onclick="window.open('https://app.smartsheet.com/sheets/QwFFFc5p67g7jHJf6mr2cg4gx2hh9jPr6pJx58M1?view=grid', '_blank')">... más info</button>
             `;
@@ -443,9 +457,9 @@
                 <div class="viaje-details">
                     <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">⭐ INFO & RESERVAS:</div>
                     <div class="viaje-info" contenteditable="true" style="font-size:0.85rem; min-height:40px; margin-bottom:10px; background:#fefefe; padding:8px; border:1px solid #ddd; border-radius:5px;"></div>
-                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">★ TTD LIST (Actividades):</div>
+                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:5px; color:#fd7e14;">✅ TTD LIST (Actividades):</div>
                     <ul class="ttd-list"></ul>
-                    <button class="add-btn" style="background:#fd7e14; width:auto; border-radius:5px; height:auto; padding:5px 10px;" onclick="addTask(this.previousElementSibling.id)">+ Actividad</button>
+                    <button class="add-btn" style="background:#fd7e14; width:auto; border-radius:5px; height:auto; padding:5px 10px;" onclick="addTask(this.previousElementSiblingSibling.id)">+ Actividad</button>
                 </div>`;
             list.appendChild(div);
         }
@@ -453,13 +467,13 @@
         function toggleTripDetails(btn) {
             const details = btn.parentNode.nextElementSibling;
             details.style.display = details.style.display === 'block' ? 'none' : 'block';
-            btn.innerHTML = details.style.display === 'block' ? '... MÁS INFO' : '... CERRAR INFO';
+            btn.innerText = details.style.display === 'block' ? '... CERRAR INFO' : '... MÁS INFO';
         }
 
         function toggleDone() {
             const history = document.getElementById('done-history');
             history.style.display = history.style.display === 'block' ? 'none' : 'block';
-            document.querySelector('.done-btn').innerHTML = history.style.display === 'block' ? '★ OCULTAR DONE' : '★ SHOW DONE';
+            document.querySelector('.done-btn').innerText = history.style.display === 'block' ? '⭐ OCULTAR DONE' : '⭐ SHOW DONE';
         }
 
         function handleTaskCompletion(checkbox) {
@@ -506,7 +520,7 @@
                 btn.innerHTML = "🔄 SYNCING...";
                 btn.style.backgroundColor = "#ffc107"; 
                 setTimeout(() => {
-                    btn.innerHTML = "★ GUARDAR (SYNC)";
+                    btn.innerHTML = "⭐ GUARDAR (SYNC)";
                     btn.style.backgroundColor = "#28a745";
                 }, 1000);
             });
@@ -609,13 +623,13 @@
         // Math evaluation for cobranza amounts
         document.addEventListener('keydown', (e) => {
             if (e.target.classList.contains('cobranza-amount') && e.key === 'Enter') {
-                e.preventDefault();
+               e.preventDefault();
                 let raw = e.target.innerText.replace('$', '').replace(/,/g, '').trim();
                 try {
-                    let sanitized = raw.replace(/[^-()\\d/*+.]/g, '');
+                    let sanitized = raw.replace(/[^-()\d/*+.]/g, '');
                     if (sanitized) {
                         let result = eval(sanitized);
-                        e.target.innerText = '$' + Number(result).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                        e.target.innerText = '$' + Number(result).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2});
                     }
                 } catch(err) {
                     console.error('Math eval error:', err);
@@ -630,7 +644,7 @@
             if (e.target.classList.contains('cobranza-amount')) {
                 let raw = e.target.innerText.replace('$', '').replace(/,/g, '').trim();
                 if (!isNaN(parseFloat(raw)) && isFinite(raw)) {
-                     e.target.innerText = '$' + Number(raw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    e.target.innerText = '$' + Number(raw).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2});
                 } else if (e.target.innerText === '' || e.target.innerText === '$') {
                     e.target.innerText = '$0.00';
                 }
